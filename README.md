@@ -202,3 +202,4 @@ Example personas (k=6):
 ## 🔁 Reproducibility
 
 All scripts accept a --seed argument and use deterministic settings where possible.
+
