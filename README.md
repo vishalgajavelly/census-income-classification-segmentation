@@ -70,9 +70,9 @@ data/raw/
   census_bureau_columns.csv
 ```
 The pipeline expects:
-	•	label → used to derive binary target (≥ $50K)
-	•	weight → survey sampling weight (used for training/eval + segment weighting; not a predictive feature)
-	•	remaining columns → numeric/categorical predictors
+- label → used to derive binary target (≥ $50K)
+- weight → survey sampling weight (used for training/eval + segment weighting; not a predictive feature)
+- remaining columns → numeric/categorical predictors
 
 ## 🚀 Quickstart (run end-to-end)
 
@@ -91,9 +91,9 @@ python -m src.data_prep \
 Step 2 — Train classifiers (LR, RF, XGBoost)
 
 Creates:
-	•	artifacts/models/best_model.joblib
-	•	artifacts/models/model_metrics.csv
-	•	artifacts/models/train_meta.json
+- artifacts/models/best_model.joblib
+- artifacts/models/model_metrics.csv
+- artifacts/models/train_meta.json
 
 ```bash
 python -m src.train_classifier \
@@ -105,9 +105,9 @@ python -m src.train_classifier \
 Step 3 — Evaluate best classifier (metrics + plots)
 
 Creates:
-	•	artifacts/eval/metrics.json
-	•	artifacts/eval/metrics.csv
-	•	confusion matrices + ROC/PR curves
+- artifacts/eval/metrics.json
+- artifacts/eval/metrics.csv
+- confusion matrices + ROC/PR curves
 
 ```bash
 python -m src.eval_classifier \
@@ -120,12 +120,12 @@ python -m src.eval_classifier \
 Step 4 — Train segmentation model (SVD + KMeans)
 
 Creates:
-	•	artifacts/segments/preprocess_clust.joblib
-	•	artifacts/segments/svd.joblib
-	•	artifacts/segments/kmeans.joblib
-	•	artifacts/segments/cluster_assignments.csv
-	•	artifacts/segments/cluster_summary.csv
-	•	artifacts/segments/metadata.json
+- artifacts/segments/preprocess_clust.joblib
+- artifacts/segments/svd.joblib
+- artifacts/segments/kmeans.joblib
+- artifacts/segments/cluster_assignments.csv
+- artifacts/segments/cluster_summary.csv
+- artifacts/segments/metadata.json
 
 ```bash
 python -m src.cluster_segments \
@@ -149,11 +149,11 @@ python -m src.profile_segments \
 Step 5 — Profile segments (weighted personas + visuals)
 
 Creates:
-	•	artifacts/segments_profile/segment_profile_table.csv
-	•	artifacts/segments_profile/persona_map.json
-	•	artifacts/segments_profile/segment_top_categories/*.csv
-	•	artifacts/segments_profile/figs/segment_numeric_heatmap.png
-	•	artifacts/segments_profile/figs/persona_bubble.png
+- artifacts/segments_profile/segment_profile_table.csv
+- artifacts/segments_profile/persona_map.json
+- artifacts/segments_profile/segment_top_categories/*.csv
+- artifacts/segments_profile/figs/segment_numeric_heatmap.png
+- artifacts/segments_profile/figs/persona_bubble.png
 
 ```bash
 python -m src.profile_segments \
@@ -168,44 +168,44 @@ python -m src.profile_segments \
 Goal: classify individuals as income ≥ $50K.
 
 Key choices:
-	•	PR-AUC emphasized due to class imbalance
-	•	Survey weights used as sample_weight for:
-	•	model training (fit(..., sample_weight=weight))
-	•	evaluation metrics (weighted ROC-AUC / PR-AUC / Precision / Recall / F1)
-	•	Models trained:
-	•	Logistic Regression (scaled numerics)
-	•	Random Forest
-	•	XGBoost (best tabular baseline)
+- PR-AUC emphasized due to class imbalance
+- Survey weights used as sample_weight for:
+- model training (fit(..., sample_weight=weight))
+- evaluation metrics (weighted ROC-AUC / PR-AUC / Precision / Recall / F1)
+- Models trained:
+- Logistic Regression (scaled numerics)
+- Random Forest
+- XGBoost (best tabular baseline)
 
 Artifacts:
-	•	best_model.joblib contains the full sklearn Pipeline (preprocess + estimator)
-	•	model_metrics.csv compares models using the same threshold
+- best_model.joblib contains the full sklearn Pipeline (preprocess + estimator)
+- model_metrics.csv compares models using the same threshold
 
 ### Objective 2 — Segmentation (Unsupervised Clustering)
 
 Goal: create interpretable personas to support targeting and messaging strategies.
 
 Pipeline:
-	•	Preprocess mixed types:
-	•	numeric: median imputation + scaling
-	•	categorical: impute "Unknown" + OneHotEncode
-	•	Dimensionality reduction:
-	•	TruncatedSVD on sparse encoded matrix (PCA analogue)
-	•	Clustering:
-	•	KMeans (k=6) with n_init=20 and fixed seed
-	•	Profiling:
-	•	weighted segment size share (weight_share)
-	•	weighted income propensity (hi_rate_w)
-	•	weighted numeric means (heatmap)
-	•	weighted top categories for key categorical variables
+- Preprocess mixed types:
+- numeric: median imputation + scaling
+- categorical: impute "Unknown" + OneHotEncode
+- Dimensionality reduction:
+- TruncatedSVD on sparse encoded matrix (PCA analogue)
+- Clustering:
+- KMeans (k=6) with n_init=20 and fixed seed
+- Profiling:
+- weighted segment size share (weight_share)
+- weighted income propensity (hi_rate_w)
+- weighted numeric means (heatmap)
+- weighted top categories for key categorical variables
 
 Personas are assigned using lightweight heuristics to keep results report-friendly.
 
 📌 Deliverables
-	•	Report.pdf — final write-up
-	•	src/ — pipeline scripts (minimal, runnable)
-	•	notebook.ipynb — EDA + modeling narrative
-	•	figs/ — figures used in report (optional to regenerate)
+- Report.pdf — final write-up
+- src/ — pipeline scripts (minimal, runnable)
+- notebook.ipynb — EDA + modeling narrative
+- figs/ — figures used in report (optional to regenerate)
 
 
 ## 🔁 Reproducibility
