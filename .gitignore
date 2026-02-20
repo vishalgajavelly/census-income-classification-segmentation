@@ -1,0 +1,57 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+dist/
+build/
+pip-wheel-metadata/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Environments ---
+.venv/
+venv/
+env/
+ENV/
+.conda/
+.condarc
+.python-version
+
+# --- Jupyter / IPython ---
+.ipynb_checkpoints/
+profile_default/
+.ipython/
+
+# --- OS / Editors ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- Data & artifacts (keep raw data out of git) ---
+data/raw/
+data/processed/
+artifacts/
+figs/
+report/
+outputs/
+
+# --- Model files ---
+*.joblib
+*.pkl
+*.pt
+*.pth
+*.onnx
+
+# --- Logs ---
+*.log
+
+# --- Zip outputs ---
+*.zip
