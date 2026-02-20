@@ -163,7 +163,7 @@ python -m src.profile_segments \
 
 ## 🧠 Methodology summary
 
-Objective 1 — Income Classification
+### Objective 1 — Income Classification
 
 Goal: classify individuals as income ≥ $50K.
 
@@ -181,7 +181,7 @@ Artifacts:
 	•	best_model.joblib contains the full sklearn Pipeline (preprocess + estimator)
 	•	model_metrics.csv compares models using the same threshold
 
-Objective 2 — Segmentation (Unsupervised Clustering)
+### Objective 2 — Segmentation (Unsupervised Clustering)
 
 Goal: create interpretable personas to support targeting and messaging strategies.
 
