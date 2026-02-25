@@ -21,10 +21,10 @@ Designed to be **reproducible**, **pipeline-driven**, and **production-style**:
 ```text
 census-income-classification-segmentation/
 ├── README.md
-├── TakeHomeProject
-│   ├── ML-TakehomeProject.pdf
-│   ├── census_bereau_columns.csv
-│   ├── census_bereau_data.csv.zip
+├── data/
+│   ├── raw
+│       ├── census_bureau_data.csv.zip
+│       ├── census_bureau_columns.csv
 ├── Report.pdf
 ├── src/
 │   ├── data_prep.py
